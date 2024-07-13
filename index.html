@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div class="contact-form">
+    <h2>Əlaqə</h2>
+    <form id="contactForm" action="process_contact_form.php" method="POST">
+      <label for="name">Ad:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="subject">Soyad:</label>
+      <input type="text" id="subject" name="subject" required>
+
+
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+
+      <label for="message">Mesaj:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit">
+        Göndər
+        <div class="spinner"></div>
+      </button> 
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent the form from submitting
+
+      const button = this.querySelector('button');
+      const spinner = button.querySelector('.spinner');
+
+      // Disable the button and show the spinner
+      button.disabled = true;
+      spinner.style.display = 'inline-block';
+
+      // Re-enable the button after 5 seconds and clear the form fields
+      setTimeout(function () {
+        button.disabled = false;
+        spinner.style.display = 'none';
+
+        // Clear the form fields
+        document.getElementById('contactForm').reset();
+      }, 5000);
+    });
+  </script>
+</body>
+
+</html>
